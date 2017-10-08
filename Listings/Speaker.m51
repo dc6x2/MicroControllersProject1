@@ -1,0 +1,30 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        10/07/2017  19:44:57  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\PROGRAM FILES\COMMON FILES\C51\BIN\BL51.EXE .\Objects\STARTUP.obj TO .\Objects\Speaker PRINT (.\Listings\Speaker.m51)
+>> 
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\Speaker (STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0024H     ABSOLUTE     
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0024H BYTE ( 1%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=36
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
