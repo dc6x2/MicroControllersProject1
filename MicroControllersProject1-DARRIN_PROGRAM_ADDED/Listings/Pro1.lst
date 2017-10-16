@@ -1,0 +1,1225 @@
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\Pro1.obj
+ASSEMBLER INVOKED BY: C:\Keil_v5\C51\BIN\A51.EXE Pro1.a51 NOMOD51 SET(SMALL) DEBUG PRINT(.\Listings\Pro1.lst) OBJECT(.\O
+                      bjects\Pro1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;#include <reg932.inc>
+
+                +1     2     ;*******************************************************************
+
+                +1     3     ;   P89LPC932 Special Function Registers
+
+                +1     4     ;*******************************************************************
+
+                +1     5     ;
+
+                +1     6     ;******* System ****************
+
+  00E0          +1     7     ACC         DATA        0xE0
+
+  00F0          +1     8     B           DATA        0xF0
+
+  0081          +1     9     SP          DATA        0x81
+
+  0082          +1    10     DPL         DATA        0x82
+
+  0083          +1    11     DPH         DATA        0x83
+
+  00DF          +1    12     RSTSRC  DATA    0xDF
+
+  0087          +1    13     PCON    DATA    0x87
+
+  00B5          +1    14     PCONA   DATA    0xB5
+
+  00D0          +1    15     PSW         DATA        0xD0
+
+  0095          +1    16     DIVM    DATA    0x95
+
+  0096          +1    17     TRIM    DATA    0x96
+
+  00A2          +1    18     AUXR1   DATA    0xA2
+
+                +1    19     ;------- Bit Addressable -------
+
+  00D7          +1    20     CY          BIT     0xD7
+
+  00D6          +1    21     AC          BIT     0xD6
+
+  00D5          +1    22     F0          BIT     0xD5
+
+  00D4          +1    23     RS1         BIT     0xD4
+
+  00D3          +1    24     RS0         BIT     0xD3
+
+  00D2          +1    25     OV          BIT     0xD2
+
+  00D1          +1    26     F1          BIT     0xD1
+
+  00D0          +1    27     P           BIT     0xD0
+
+  00B1          +1    28     XTAL1   BIT         0xB1
+
+  00B0          +1    29     XTAL2   BIT         0xB0
+
+                +1    30     ;******* Ports *****************
+
+  0080          +1    31     P0          DATA        0x80
+
+  0084          +1    32     P0M1    DATA    0x84
+
+  0085          +1    33     P0M2    DATA    0x85
+
+  00F6          +1    34     PT0AD   DATA    0xF6
+
+  0090          +1    35     P1          DATA        0x90
+
+  0091          +1    36     P1M1    DATA    0x91
+
+  0092          +1    37     P1M2    DATA    0x92
+
+  00A0          +1    38     P2          DATA        0xA0
+
+  00A4          +1    39     P2M1    DATA    0xA4
+
+  00A5          +1    40     P2M2    DATA    0xA5
+
+  00B0          +1    41     P3          DATA        0xB0
+
+  00B1          +1    42     P3M1    DATA    0xB1
+
+  00B2          +1    43     P3M2    DATA    0xB2
+
+                +1    44     ;******* EEPROM ****************
+
+  00F1          +1    45     DEECON  DATA    0xF1
+
+  00F2          +1    46     DEEDAT  DATA    0xF2
+
+  00F3          +1    47     DEEADR  DATA    0xF3
+
+                +1    48     ;******* Keypad ****************
+
+  0086          +1    49     KBMASK  DATA    0x86
+
+  0093          +1    50     KBPATN  DATA    0x93
+
+  0094          +1    51     KBCON   DATA    0x94
+
+                +1    52     ;------- Bit Addressable -------
+
+  0080          +1    53     KB0         BIT     0x80
+
+  0081          +1    54     KB1         BIT     0x81
+
+  0082          +1    55     KB2         BIT     0x82
+
+  0083          +1    56     KB3         BIT     0x83
+
+  0084          +1    57     KB4         BIT     0x84
+
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE     2
+
+  0085          +1    58     KB5         BIT     0x85
+
+  0086          +1    59     KB6         BIT     0x86
+
+  0087          +1    60     KB7         BIT     0x87
+
+                +1    61     ;******* Comparators ***********
+
+  00AC          +1    62     CMP1    DATA    0xAC
+
+  00AD          +1    63     CMP2    DATA    0xAD
+
+                +1    64     ;------- Bit Addressable -------
+
+  0086          +1    65     CMP1O   BIT     0x86
+
+  0085          +1    66     CMPREF  BIT     0x85
+
+  0084          +1    67     CIN1A   BIT     0x84
+
+  0083          +1    68     CIN1B   BIT     0x83
+
+  0082          +1    69     CIN2A   BIT     0x82
+
+  0081          +1    70     CIN2B   BIT     0x81
+
+  0080          +1    71     CMP2O   BIT     0x80
+
+                +1    72     ;******* Serial Port ***********
+
+  0098          +1    73     SCON    DATA    0x98
+
+  0099          +1    74     SBUF    DATA    0x99
+
+  00A9          +1    75     SADDR   DATA    0xA9
+
+  00B9          +1    76     SADEN   DATA    0xB9
+
+  00BA          +1    77     SSTAT   DATA    0xBA
+
+  00BD          +1    78     BRGCON  DATA    0xBD
+
+  00BE          +1    79     BRGR0   DATA    0xBE
+
+  00BF          +1    80     BRGR1   DATA    0xBF
+
+                +1    81     ;------- Bit Addressable -------
+
+  009F          +1    82     FE          BIT     0x9F
+
+  009F          +1    83     SM0         BIT     0x9F
+
+  009E          +1    84     SM1         BIT     0x9E
+
+  009D          +1    85     SM2         BIT     0x9D
+
+  009C          +1    86     REN         BIT     0x9C
+
+  009B          +1    87     TB8         BIT     0x9B
+
+  009A          +1    88     RB8         BIT     0x9A
+
+  0099          +1    89     TI          BIT     0x99
+
+  0098          +1    90     RI          BIT     0x98
+
+  0091          +1    91     RxD         BIT     0x91
+
+  0090          +1    92     TxD         BIT     0x90
+
+                +1    93     ;******* SPI *******************
+
+  00E1          +1    94     SPSTAT  DATA    0xE1
+
+  00E2          +1    95     SPCTL   DATA    0xE2
+
+  00E3          +1    96     SPDAT   DATA    0xE3
+
+                +1    97     ;------- Bit Addressable -------
+
+  00A5          +1    98     SPICLK  BIT         0xA5
+
+  00A4          +1    99     SS          BIT     0xA4
+
+  00A3          +1   100     MISO    BIT         0xA3
+
+  00A2          +1   101     MOSI    BIT         0xA2
+
+                +1   102     ;******* IIC *******************
+
+  00D8          +1   103     I2CON   DATA    0xD8
+
+  00D9          +1   104     I2STAT  DATA    0xD9
+
+  00DA          +1   105     I2DAT   DATA    0xDA
+
+  00DB          +1   106     I2ADR   DATA    0xDB
+
+  00DC          +1   107     I2SCLL  DATA    0xDC
+
+  00DD          +1   108     I2SCLH  DATA    0xDD
+
+                +1   109     ;------ Bit Addressable --------
+
+  00DE          +1   110     I2EN    BIT         0xDE
+
+  00DD          +1   111     STA         BIT     0xDD
+
+  00DC          +1   112     STO         BIT     0xDC
+
+  00DB          +1   113     SI          BIT     0xDB
+
+  00DA          +1   114     AA          BIT     0xDA
+
+  00D8          +1   115     CRSEL   BIT         0xD8
+
+  0093          +1   116     SDA         BIT     0x93
+
+  0092          +1   117     SCL         BIT     0x92
+
+                +1   118     ;******* Timers ****************
+
+  00CA          +1   119     TPCR2L  DATA    0xCA
+
+  00CB          +1   120     TPCR2H  DATA    0xCB
+
+  0088          +1   121     TCON    DATA    0x88
+
+  0089          +1   122     TMOD    DATA    0x89
+
+  008A          +1   123     TL0         DATA        0x8A
+
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE     3
+
+  008C          +1   124     TH0         DATA        0x8C
+
+  008B          +1   125     TL1         DATA        0x8B
+
+  008D          +1   126     TH1         DATA        0x8D
+
+  00CC          +1   127     TL2         DATA        0xCC
+
+  00CD          +1   128     TH2         DATA        0xCD
+
+  008F          +1   129     TAMOD   DATA    0x8F
+
+                +1   130     ;------- Bit Addressable -------
+
+  008F          +1   131     TF1         BIT     0x8F
+
+  008E          +1   132     TR1         BIT     0x8E
+
+  008D          +1   133     TF0         BIT     0x8D
+
+  008C          +1   134     TR0         BIT     0x8C
+
+  008B          +1   135     IE1         BIT     0x8B
+
+  008A          +1   136     IT1         BIT     0x8A
+
+  0089          +1   137     IE0         BIT     0x89
+
+  0088          +1   138     IT0         BIT     0x88
+
+  00CF          +1   139     PLLEN   BIT         0xCF
+
+  00CE          +1   140     HLTRN   BIT         0xCE
+
+  00CD          +1   141     HLTEN   BIT         0xCD
+
+  00CC          +1   142     ALTCD   BIT         0xCC
+
+  00CB          +1   143     ALTAB   BIT         0xCB
+
+  00CA          +1   144     TDIR2   BIT         0xCA
+
+  00C9          +1   145     TMOD21  BIT         0xC9
+
+  00C8          +1   146     TMOD20  BIT         0xC8
+
+  0087          +1   147     T1          BIT     0x87
+
+  0092          +1   148     T0          BIT     0x92
+
+                +1   149     ;******* Capture/Compare Unit **
+
+  00EA          +1   150     CCCRA   DATA    0xEA
+
+  00EB          +1   151     CCCRB   DATA    0xEB
+
+  00EC          +1   152     CCCRC   DATA    0xEC
+
+  00ED          +1   153     CCCRD   DATA    0xED
+
+  00C8          +1   154     TCR20   DATA    0xC8
+
+  00F9          +1   155     TCR21   DATA    0xF9
+
+  00C9          +1   156     TICR2   DATA    0xC9
+
+  00DE          +1   157     TISE2   DATA    0xDE
+
+  00E9          +1   158     TIFR2   DATA    0xE9
+
+  00CE          +1   159     TOR2L   DATA    0xCE
+
+  00CF          +1   160     TOR2H   DATA    0xCF
+
+                +1   161     ;******* Input Capture *********
+
+  00AA          +1   162     ICRAL   DATA    0xAA
+
+  00AB          +1   163     ICRAH   DATA    0xAB
+
+  00AE          +1   164     ICRBL   DATA    0xAE
+
+  00AF          +1   165     ICRBH   DATA    0xAF
+
+                +1   166     ;------- Bit Addressable -------
+
+  00A7          +1   167     ICA         BIT     0xA7
+
+  00A0          +1   168     ICB         BIT     0xA0
+
+                +1   169     ;******* Output Compare ********
+
+  00EE          +1   170     OCRAL   DATA    0xEE
+
+  00EF          +1   171     OCRAH   DATA    0xEF
+
+  00FA          +1   172     OCRBL   DATA    0xFA
+
+  00FB          +1   173     OCRBH   DATA    0xFB
+
+  00FC          +1   174     OCRCL   DATA    0xFC
+
+  00FD          +1   175     OCRCH   DATA    0xFD
+
+  00FE          +1   176     OCRDL   DATA    0xFE
+
+  00FF          +1   177     OCRDH   DATA    0xFF
+
+                +1   178     ;------- Bit Addressable -------
+
+  00A1          +1   179     OCD         BIT     0xA1
+
+  0097          +1   180     OCC         BIT     0x97
+
+  0096          +1   181     OCB         BIT     0x96
+
+  00A6          +1   182     OCA         BIT     0xA6
+
+                +1   183     ;******* Watchdog **************
+
+  00C2          +1   184     WFEED1  DATA    0xC2
+
+  00C3          +1   185     WFEED2  DATA    0xC3
+
+  00C1          +1   186     WDL         DATA        0xC1
+
+  00A7          +1   187     WDCON   DATA    0xA7
+
+                +1   188     ;******* Real Time Clock *******
+
+  00D3          +1   189     RTCL    DATA    0xD3
+
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE     4
+
+  00D2          +1   190     RTCH    DATA    0xD2
+
+  00D1          +1   191     RTCCON  DATA    0xD1
+
+                +1   192     ;******* Interrupts ************
+
+  00A8          +1   193     IEN0    DATA    0xA8
+
+  00E8          +1   194     IEN1    DATA    0xE8
+
+  00B8          +1   195     IP0         DATA        0xB8
+
+  00B7          +1   196     IP0H    DATA    0xB7
+
+  00F8          +1   197     IP1         DATA        0xF8
+
+  00F7          +1   198     IP1H    DATA    0xF7
+
+                +1   199     ;------- Bit Addressable -------
+
+  00AF          +1   200     EA          BIT     0xAF
+
+  00AE          +1   201     EWDRT   BIT         0xAE
+
+  00AD          +1   202     EBO         BIT     0xAD
+
+  00AC          +1   203     ES          BIT     0xAC
+
+  00AC          +1   204     ESR         BIT     0xAC
+
+  00AB          +1   205     ET1         BIT     0xAB
+
+  00AA          +1   206     EX1         BIT     0xAA
+
+  00A9          +1   207     ET0         BIT     0xA9
+
+  00A8          +1   208     EX0         BIT     0xA8
+
+  00EF          +1   209     EIEE    BIT         0xEF
+
+  00EE          +1   210     EST         BIT     0xEE
+
+  00EC          +1   211     ECCU    BIT         0xEC
+
+  00EB          +1   212     ESPI    BIT         0xEB
+
+  00EA          +1   213     EC          BIT     0xEA
+
+  00E9          +1   214     EKBI    BIT         0xE9
+
+  00E8          +1   215     EI2C    BIT         0xE8
+
+  00BE          +1   216     PWDRT   BIT         0xBE
+
+  00BD          +1   217     PB0         BIT     0xBD
+
+  00BC          +1   218     PS          BIT     0xBC
+
+  00BC          +1   219     PSR         BIT     0xBC
+
+  00BB          +1   220     PT1         BIT     0xBB
+
+  00BA          +1   221     PX1         BIT     0xBA
+
+  00B9          +1   222     PT0         BIT     0xB9
+
+  00B8          +1   223     PX0         BIT     0xB8
+
+  00FF          +1   224     PIEE    BIT         0xFF
+
+  00FE          +1   225     PST         BIT     0xFE
+
+  00FC          +1   226     PCCU    BIT         0xFC
+
+  00FB          +1   227     PSPI    BIT         0xFB
+
+  00FA          +1   228     PCL     BIT         0xFA
+
+  00F9          +1   229     PKBI    BIT         0xF9
+
+  00F8          +1   230     PI2C    BIT         0xF8
+
+  0095          +1   231     RST         BIT     0x95
+
+  0094          +1   232     INT1    BIT         0x94
+
+  0093          +1   233     INT0    BIT         0x93
+
+                +1   234     
+
+                +1   235     
+
+                +1   236     
+
+                +1   237     
+
+                +1   238     
+
+                +1   239     
+
+                +1   240     
+
+                +1   241     
+
+                +1   242     
+
+                +1   243     
+
+                +1   244     
+
+                +1   245     
+
+                +1   246     
+
+                +1   247     
+
+                +1   248     
+
+                     249     
+
+                     250     
+
+0000                 251     ORG 0
+
+                     252     
+
+0000 75A400          253     MOV P2M1, #0                                    ;making P2 bidirectional
+
+0003 759100          254     MOV P1M1, #0                                    ;making P1 bidirectional
+
+0006 758400          255     MOV P0M1, #0                                    ;making P0 bidirectional
+
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE     5
+
+                     256     
+
+                     257     ;;;;;;;start button check loop and new functions
+
+0009 C2A5            258     MAIN:   CLR P2.5                                ;turn on bottom left LED
+
+000B C287            259                     CLR P0.7                                ;turn on bottom middle LED
+
+000D C2A6            260                     CLR P2.6                                ;turn on bottom right LED
+
+000F 20A10D          261                     JB P2.1, G_B                    ;jumps to main program if bottom left butto
+                             n pushed
+
+0012 3107            262     MBSP:   ACALL DELAY     
+
+0014 30A1FB          263                     JNB P2.1, MBSP                  ;holds until button not pressed
+
+0017 D2A5            264                     SETB P2.5                               ;turn off bottom left LED
+
+0019 D287            265                     SETB P0.7                               ;turn off bottom middle LED
+
+001B D2A6            266                     SETB P2.6                               ;turn off bottom right LED
+
+001D 3128            267                     ACALL COUNTER                   ;jumps to INC_B
+
+                     268                     
+
+001F 20830D          269     G_B:    JB P0.3, D_B                    ;jumps to George's function if bottom middle button
+                              pushed
+
+0022 3107            270     GBSP:   ACALL DELAY
+
+0024 3083FB          271                     JNB P0.3, GBSP                  ;holds until button not pressed
+
+0027 D2A5            272                     SETB P2.5                               ;turn off bottom left LED
+
+0029 D287            273                     SETB P0.7                               ;turn off bottom middle LED
+
+002B D2A6            274                     SETB P2.6                               ;turn off bottom right LED
+
+002D 8010            275                     SJMP GEORGE                     ;jumps to George's program
+
+                     276     
+
+002F 20A2D7          277     D_B:    JB P2.2, MAIN                   ;jumps to Darrin's function if bottom right button 
+                             pushed
+
+0032 3107            278     DABSP:  ACALL DELAY             
+
+0034 30A2FB          279                     JNB P2.2, DABSP                 ;holds until button not pressed
+
+0037 D2A5            280                     SETB P2.5                               ;turn off bottom left LED
+
+0039 D287            281                     SETB P0.7                               ;turn off bottom middle LED
+
+003B D2A6            282                     SETB P2.6                               ;turn off bottom right LED
+
+003D 8003            283                     SJMP DARRIN                             ;jumps to Darrin's program
+
+                     284                     
+
+003F                 285     GEORGE:
+
+003F 020009          286                     LJMP MAIN                               ;empty location for George's functi
+                             on
+
+                     287                     
+
+0042                 288     DARRIN:                                                 ;program to make a fun led display 
+                             show
+
+0042 3107            289                     ACALL DELAY
+
+0044 3107            290                     ACALL DELAY
+
+0046 C296            291                     CLR P1.6                                ;middle middle
+
+0048 3107            292                     ACALL DELAY
+
+004A D296            293                     SETB P1.6
+
+004C C287            294                     CLR P0.7                                ;bottom middle
+
+004E 3107            295                     ACALL DELAY
+
+0050 D287            296                     SETB P0.7
+
+0052 C2A5            297                     CLR P2.5                                ;BL
+
+0054 3107            298                     ACALL DELAY
+
+0056 D2A5            299                     SETB P2.5
+
+0058 C286            300                     CLR P0.6                                ;ML
+
+005A 3107            301                     ACALL DELAY
+
+005C D286            302                     SETB P0.6
+
+005E C2A4            303                     CLR P2.4                                ;TL
+
+0060 3107            304                     ACALL DELAY
+
+0062 D2A4            305                     SETB P2.4
+
+0064 C285            306                     CLR P0.5                                ;TM
+
+0066 3107            307                     ACALL DELAY
+
+0068 D285            308                     SETB P0.5
+
+006A C2A7            309                     CLR P2.7                                ;TR
+
+006C 3107            310                     ACALL DELAY
+
+006E D2A7            311                     SETB P2.7
+
+0070 C284            312                     CLR P0.4                                ;MR
+
+0072 3107            313                     ACALL DELAY
+
+0074 D284            314                     SETB P0.4
+
+0076 C2A6            315                     CLR P2.6                                ;BR
+
+0078 3107            316                     ACALL DELAY
+
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE     6
+
+007A D2A6            317                     SETB P2.6
+
+007C C287            318                     CLR P0.7                                ;BM
+
+007E 3107            319                     ACALL DELAY
+
+0080 D287            320                     SETB P0.7
+
+0082 C296            321                     CLR P1.6                                ;MM ON
+
+0084 3107            322                     ACALL DELAY
+
+0086 C2A4            323                     CLR P2.4                                ;TL ON
+
+0088 C2A7            324                     CLR P2.7                                ;TR ON
+
+008A C2A6            325                     CLR P2.6                                ;BR ON
+
+008C C2A5            326                     CLR P2.5                                ;BL ON
+
+008E D296            327                     SETB P1.6                               ;MM OFF
+
+0090 3107            328                     ACALL DELAY
+
+0092 C285            329                     CLR P0.5                                ;TM ON
+
+0094 C287            330                     CLR P0.7                                ;BM ON
+
+0096 C286            331                     CLR P0.6                                ;ML ON
+
+0098 C284            332                     CLR P0.4                                ;MR ON
+
+009A 3107            333                     ACALL DELAY
+
+009C 3107            334                     ACALL DELAY
+
+009E D2A4            335                     SETB P2.4                               ;TL OFF
+
+00A0 3107            336                     ACALL DELAY
+
+00A2 D286            337                     SETB P0.6                               ;ML OFF
+
+00A4 3107            338                     ACALL DELAY
+
+00A6 D2A5            339                     SETB P2.5                               ;BL OFF
+
+00A8 3107            340                     ACALL DELAY
+
+00AA D287            341                     SETB P0.7                               ;BM OFF
+
+00AC 3107            342                     ACALL DELAY
+
+00AE D2A6            343                     SETB P2.6                               ;BR OFF
+
+00B0 3107            344                     ACALL DELAY
+
+00B2 D284            345                     SETB P0.4                               ;MR OFF
+
+00B4 3107            346                     ACALL DELAY
+
+00B6 D2A7            347                     SETB P2.7                               ;TR OFF
+
+00B8 3107            348                     ACALL DELAY
+
+00BA D285            349                     SETB P0.5                               ;TM OFF
+
+00BC 3107            350                     ACALL DELAY
+
+00BE C296            351                     CLR P1.6                                ;MM ON
+
+00C0 3107            352                     ACALL DELAY
+
+00C2 3107            353                     ACALL DELAY
+
+00C4 D296            354                     SETB P1.6                               ;MM OFF
+
+00C6 3107            355                     ACALL DELAY
+
+00C8 3107            356                     ACALL DELAY
+
+                     357                                                                     ;START CIRCLE LOOP
+
+00CA 3107            358                     ACALL DELAY
+
+00CC 7F04            359                     MOV R7, #04H
+
+00CE C2A4            360     CIRCLE: CLR P2.4                                ;TL ON
+
+00D0 C2A7            361                     CLR P2.7                                ;TR ON
+
+00D2 C2A6            362                     CLR P2.6                                ;BR ON
+
+00D4 C2A5            363                     CLR P2.5                                ;BL ON
+
+00D6 3107            364                     ACALL DELAY
+
+00D8 D2A4            365                     SETB P2.4                               ;TL OFF
+
+00DA D2A7            366                     SETB P2.7                               ;TR OFF
+
+00DC D2A6            367                     SETB P2.6                               ;BR OFF
+
+00DE D2A5            368                     SETB P2.5                               ;BL OFF
+
+00E0 C285            369                     CLR P0.5                                ;TM ON
+
+00E2 C287            370                     CLR P0.7                                ;BM ON
+
+00E4 C286            371                     CLR P0.6                                ;ML ON
+
+00E6 C284            372                     CLR P0.4                                ;MR ON
+
+00E8 3107            373                     ACALL DELAY
+
+00EA D285            374                     SETB P0.5                               ;TM OFF
+
+00EC D287            375                     SETB P0.7                               ;BM OFF
+
+00EE D286            376                     SETB P0.6                               ;ML OFF
+
+00F0 D284            377                     SETB P0.4                               ;MT OFF
+
+00F2 DFDA            378                     DJNZ R7, CIRCLE
+
+00F4 3107            379                     ACALL DELAY
+
+00F6 C296            380                     CLR P1.6                                ;MM ON
+
+00F8 3107            381                     ACALL DELAY
+
+00FA 3107            382                     ACALL DELAY
+
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE     7
+
+00FC D296            383                     SETB P1.6                               ;MM OFF
+
+00FE 3107            384                     ACALL DELAY
+
+0100 3107            385                     ACALL DELAY
+
+0102 3107            386                     ACALL DELAY
+
+                     387                     
+
+0104 020009          388                     LJMP MAIN                               ;empty program for Darrin's functio
+                             n
+
+                     389                     
+
+                     390     ;;;;;;;end button checking loop and start of General subroutines
+
+                     391     
+
+0107 7C08            392     DELAY:  MOV R4, #08H
+
+0109 7BFF            393     DELAY1: MOV R3, #0FFH
+
+010B 7AFF            394     DELAY2: MOV R2, #0FFH
+
+010D DAFE            395     DELAY3: DJNZ R2, DELAY3                 ;creates a delay to prevent debouncing
+
+010F DBFA            396                     DJNZ R3, DELAY2
+
+0111 DCF6            397                     DJNZ R4, DELAY1
+
+0113 22              398     RET
+
+                     399     
+
+0114 7B40            400     BEEP:   MOV R3,#64      
+
+0116 7A20            401     LOOP3:  MOV R2,#32       
+
+0118 7920            402     LOOP2:  MOV R1,#32        
+
+011A 7820            403     LOOP1:  MOV R0,#32         
+
+011C 00              404     LOOP0:  NOP               
+
+                     405             
+
+011D D8FD            406                     DJNZ R0,LOOP0     ;DECREMENTS REGISTER0 RETURNS TO LOOP0
+
+011F D9F9            407                     DJNZ R1,LOOP1     ;DECREMENTS REGISTER1 RETURNS TO LOOP1
+
+0121 B297            408                     CPL  P1.7         ;BEEP!!!
+
+0123 DAF3            409                     DJNZ R2,LOOP2     ;DECREMENTS REGISTER2 RETURNS TO LOOP2
+
+0125 DBEF            410                     DJNZ R3,LOOP3     ;DECREMENTS REGISTER3 RETURNS TO LOOP3
+
+0127 22              411     RET
+
+                     412             
+
+                     413     ;;;;;;;;end of general subroutines, begining of Counter subroutine
+
+                     414     
+
+0128 C2D5            415     COUNTER:CLR PSW.5                               ;set the exit FLAG to 0.
+
+                     416     
+
+012A 20A209          417     EXIT_B: JB P2.2, RES_B                  ;resets if P2.0 is pressed
+
+012D 3107            418     EBSP:   ACALL DELAY                             ;delay to prevent debouncing
+
+012F 30A2FB          419                     JNB P2.2, EBSP                  ;holds until button not pressed
+
+0132 D2D5            420                     SETB PSW.5                              ;R2 is a flag for exit
+
+0134 8008            421                     SJMP CLR_EX
+
+                     422     
+
+0136 20A30A          423     RES_B:  JB P2.3, INC_B                  ;resets if P2.0 is pressed
+
+0139 3107            424     RBSP:   ACALL DELAY                             ;delay to prevent debouncing
+
+013B 30A3FB          425                     JNB P2.3, RBSP                  ;holds until button not pressed
+
+013E E4              426     CLR_EX: CLR A                                   ;resets A
+
+013F 3114            427                     ACALL BEEP                              ;beeps if reset
+
+0141 8014            428                     SJMP LEDS
+
+                     429                     
+
+0143 20A008          430     INC_B:  JB P2.0, DEC_B                  ;increments if P2.0 is pressed
+
+0146 3107            431     IBSP:   ACALL DELAY                             ;delay to prevent debouncing
+
+0148 30A0FB          432                     JNB P2.0, IBSP                  ;holds until button not pressed
+
+014B 04              433                     INC A
+
+014C 8009            434                     SJMP LEDS
+
+                     435                     
+
+014E 2081D9          436     DEC_B:  JB P0.1, EXIT_B                         ;deincrements if P0.1 is pressed
+
+0151 3107            437     DBSP:   ACALL DELAY                             ;delay to prevent debouncing
+
+0153 3081FB          438                     JNB P0.1, DBSP                  ;holds until button not pressed
+
+0156 14              439                     DEC A
+
+                     440                     
+
+0157 F4              441     LEDS:   CPL A           ;complement so bits of A are fight for LED output
+
+                     442     
+
+0158 A2E0            443                     MOV C, ACC.0                    ;stores 0 bit of A in C 
+
+015A 9284            444                     MOV P0.4, C                     ;o/p C to P0.4
+
+                     445                     
+
+015C A2E1            446                     MOV C, ACC.1                    ;stores 1 bit of A in C
+
+015E 92A7            447                     MOV P2.7, C                     ;o/p C to P2.7
+
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE     8
+
+                     448     
+
+0160 A2E2            449                     MOV C, ACC.2                    ;stores 2 bit of A in C
+
+0162 9285            450                     MOV P0.5, C                     ;o/p C to P0.5
+
+                     451                     
+
+0164 A2E3            452                     MOV C, ACC.3                    ;stores 0 bit of A in C
+
+0166 92A4            453                     MOV P2.4, C                     ;o/p C to P2.4
+
+                     454     ;code above matches LEDS to A lower nibble so o/p can be seen
+
+                     455     
+
+0168 F4              456                     CPL A           ;re-store A to proper binary not complement
+
+0169 30E402          457                     JNB ACC.4, SKIP_BP      ;jumps if NOT rollover
+
+016C 3114            458                     ACALL BEEP                      ;call beep when rollover
+
+016E 540F            459     SKIP_BP:ANL A, #0FH                     ;masks the upper nibble of A
+
+                     460             
+
+0170 A2D0            461                     MOV C, PSW.0    ;code for showing parity flag LED
+
+0172 9287            462                     MOV P0.7, C             ;green shows not parity
+
+0174 B3              463                     CPL C
+
+0175 92A5            464                     MOV P2.5, C             ;yellow shows parity
+
+                     465                     
+
+0177 30D5BC          466                     JNB PSW.5, Res_B;back to polling if not exit flag
+
+017A D287            467                     SETB P0.7               ;Reset not parity LED
+
+017C C2D5            468                     CLR PSW.5               ;resets flag
+
+017E 22              469     RET                                             ;EXITS counter
+
+                     470     
+
+                     471     END
+
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE     9
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AA . . . . . . . .  B ADDR   00D8H.2 A   
+AC . . . . . . . .  B ADDR   00D0H.6 A   
+ACC. . . . . . . .  D ADDR   00E0H   A   
+ALTAB. . . . . . .  B ADDR   00C8H.3 A   
+ALTCD. . . . . . .  B ADDR   00C8H.4 A   
+AUXR1. . . . . . .  D ADDR   00A2H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+BEEP . . . . . . .  C ADDR   0114H   A   
+BRGCON . . . . . .  D ADDR   00BDH   A   
+BRGR0. . . . . . .  D ADDR   00BEH   A   
+BRGR1. . . . . . .  D ADDR   00BFH   A   
+CCCRA. . . . . . .  D ADDR   00EAH   A   
+CCCRB. . . . . . .  D ADDR   00EBH   A   
+CCCRC. . . . . . .  D ADDR   00ECH   A   
+CCCRD. . . . . . .  D ADDR   00EDH   A   
+CIN1A. . . . . . .  B ADDR   0080H.4 A   
+CIN1B. . . . . . .  B ADDR   0080H.3 A   
+CIN2A. . . . . . .  B ADDR   0080H.2 A   
+CIN2B. . . . . . .  B ADDR   0080H.1 A   
+CIRCLE . . . . . .  C ADDR   00CEH   A   
+CLR_EX . . . . . .  C ADDR   013EH   A   
+CMP1 . . . . . . .  D ADDR   00ACH   A   
+CMP1O. . . . . . .  B ADDR   0080H.6 A   
+CMP2 . . . . . . .  D ADDR   00ADH   A   
+CMP2O. . . . . . .  B ADDR   0080H.0 A   
+CMPREF . . . . . .  B ADDR   0080H.5 A   
+COUNTER. . . . . .  C ADDR   0128H   A   
+CRSEL. . . . . . .  B ADDR   00D8H.0 A   
+CY . . . . . . . .  B ADDR   00D0H.7 A   
+DABSP. . . . . . .  C ADDR   0032H   A   
+DARRIN . . . . . .  C ADDR   0042H   A   
+DBSP . . . . . . .  C ADDR   0151H   A   
+DEC_B. . . . . . .  C ADDR   014EH   A   
+DEEADR . . . . . .  D ADDR   00F3H   A   
+DEECON . . . . . .  D ADDR   00F1H   A   
+DEEDAT . . . . . .  D ADDR   00F2H   A   
+DELAY. . . . . . .  C ADDR   0107H   A   
+DELAY1 . . . . . .  C ADDR   0109H   A   
+DELAY2 . . . . . .  C ADDR   010BH   A   
+DELAY3 . . . . . .  C ADDR   010DH   A   
+DIVM . . . . . . .  D ADDR   0095H   A   
+DPH. . . . . . . .  D ADDR   0083H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+D_B. . . . . . . .  C ADDR   002FH   A   
+EA . . . . . . . .  B ADDR   00A8H.7 A   
+EBO. . . . . . . .  B ADDR   00A8H.5 A   
+EBSP . . . . . . .  C ADDR   012DH   A   
+EC . . . . . . . .  B ADDR   00E8H.2 A   
+ECCU . . . . . . .  B ADDR   00E8H.4 A   
+EI2C . . . . . . .  B ADDR   00E8H.0 A   
+EIEE . . . . . . .  B ADDR   00E8H.7 A   
+EKBI . . . . . . .  B ADDR   00E8H.1 A   
+ES . . . . . . . .  B ADDR   00A8H.4 A   
+ESPI . . . . . . .  B ADDR   00E8H.3 A   
+ESR. . . . . . . .  B ADDR   00A8H.4 A   
+EST. . . . . . . .  B ADDR   00E8H.6 A   
+ET0. . . . . . . .  B ADDR   00A8H.1 A   
+ET1. . . . . . . .  B ADDR   00A8H.3 A   
+EWDRT. . . . . . .  B ADDR   00A8H.6 A   
+EX0. . . . . . . .  B ADDR   00A8H.0 A   
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE    10
+
+EX1. . . . . . . .  B ADDR   00A8H.2 A   
+EXIT_B . . . . . .  C ADDR   012AH   A   
+F0 . . . . . . . .  B ADDR   00D0H.5 A   
+F1 . . . . . . . .  B ADDR   00D0H.1 A   
+FE . . . . . . . .  B ADDR   0098H.7 A   
+GBSP . . . . . . .  C ADDR   0022H   A   
+GEORGE . . . . . .  C ADDR   003FH   A   
+G_B. . . . . . . .  C ADDR   001FH   A   
+HLTEN. . . . . . .  B ADDR   00C8H.5 A   
+HLTRN. . . . . . .  B ADDR   00C8H.6 A   
+I2ADR. . . . . . .  D ADDR   00DBH   A   
+I2CON. . . . . . .  D ADDR   00D8H   A   
+I2DAT. . . . . . .  D ADDR   00DAH   A   
+I2EN . . . . . . .  B ADDR   00D8H.6 A   
+I2SCLH . . . . . .  D ADDR   00DDH   A   
+I2SCLL . . . . . .  D ADDR   00DCH   A   
+I2STAT . . . . . .  D ADDR   00D9H   A   
+IBSP . . . . . . .  C ADDR   0146H   A   
+ICA. . . . . . . .  B ADDR   00A0H.7 A   
+ICB. . . . . . . .  B ADDR   00A0H.0 A   
+ICRAH. . . . . . .  D ADDR   00ABH   A   
+ICRAL. . . . . . .  D ADDR   00AAH   A   
+ICRBH. . . . . . .  D ADDR   00AFH   A   
+ICRBL. . . . . . .  D ADDR   00AEH   A   
+IE0. . . . . . . .  B ADDR   0088H.1 A   
+IE1. . . . . . . .  B ADDR   0088H.3 A   
+IEN0 . . . . . . .  D ADDR   00A8H   A   
+IEN1 . . . . . . .  D ADDR   00E8H   A   
+INC_B. . . . . . .  C ADDR   0143H   A   
+INT0 . . . . . . .  B ADDR   0090H.3 A   
+INT1 . . . . . . .  B ADDR   0090H.4 A   
+IP0. . . . . . . .  D ADDR   00B8H   A   
+IP0H . . . . . . .  D ADDR   00B7H   A   
+IP1. . . . . . . .  D ADDR   00F8H   A   
+IP1H . . . . . . .  D ADDR   00F7H   A   
+IT0. . . . . . . .  B ADDR   0088H.0 A   
+IT1. . . . . . . .  B ADDR   0088H.2 A   
+KB0. . . . . . . .  B ADDR   0080H.0 A   
+KB1. . . . . . . .  B ADDR   0080H.1 A   
+KB2. . . . . . . .  B ADDR   0080H.2 A   
+KB3. . . . . . . .  B ADDR   0080H.3 A   
+KB4. . . . . . . .  B ADDR   0080H.4 A   
+KB5. . . . . . . .  B ADDR   0080H.5 A   
+KB6. . . . . . . .  B ADDR   0080H.6 A   
+KB7. . . . . . . .  B ADDR   0080H.7 A   
+KBCON. . . . . . .  D ADDR   0094H   A   
+KBMASK . . . . . .  D ADDR   0086H   A   
+KBPATN . . . . . .  D ADDR   0093H   A   
+LEDS . . . . . . .  C ADDR   0157H   A   
+LOOP0. . . . . . .  C ADDR   011CH   A   
+LOOP1. . . . . . .  C ADDR   011AH   A   
+LOOP2. . . . . . .  C ADDR   0118H   A   
+LOOP3. . . . . . .  C ADDR   0116H   A   
+MAIN . . . . . . .  C ADDR   0009H   A   
+MBSP . . . . . . .  C ADDR   0012H   A   
+MISO . . . . . . .  B ADDR   00A0H.3 A   
+MOSI . . . . . . .  B ADDR   00A0H.2 A   
+OCA. . . . . . . .  B ADDR   00A0H.6 A   
+OCB. . . . . . . .  B ADDR   0090H.6 A   
+OCC. . . . . . . .  B ADDR   0090H.7 A   
+OCD. . . . . . . .  B ADDR   00A0H.1 A   
+OCRAH. . . . . . .  D ADDR   00EFH   A   
+OCRAL. . . . . . .  D ADDR   00EEH   A   
+OCRBH. . . . . . .  D ADDR   00FBH   A   
+OCRBL. . . . . . .  D ADDR   00FAH   A   
+OCRCH. . . . . . .  D ADDR   00FDH   A   
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE    11
+
+OCRCL. . . . . . .  D ADDR   00FCH   A   
+OCRDH. . . . . . .  D ADDR   00FFH   A   
+OCRDL. . . . . . .  D ADDR   00FEH   A   
+OV . . . . . . . .  B ADDR   00D0H.2 A   
+P. . . . . . . . .  B ADDR   00D0H.0 A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P0M1 . . . . . . .  D ADDR   0084H   A   
+P0M2 . . . . . . .  D ADDR   0085H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+P1M1 . . . . . . .  D ADDR   0091H   A   
+P1M2 . . . . . . .  D ADDR   0092H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P2M1 . . . . . . .  D ADDR   00A4H   A   
+P2M2 . . . . . . .  D ADDR   00A5H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+P3M1 . . . . . . .  D ADDR   00B1H   A   
+P3M2 . . . . . . .  D ADDR   00B2H   A   
+PB0. . . . . . . .  B ADDR   00B8H.5 A   
+PCCU . . . . . . .  B ADDR   00F8H.4 A   
+PCL. . . . . . . .  B ADDR   00F8H.2 A   
+PCON . . . . . . .  D ADDR   0087H   A   
+PCONA. . . . . . .  D ADDR   00B5H   A   
+PI2C . . . . . . .  B ADDR   00F8H.0 A   
+PIEE . . . . . . .  B ADDR   00F8H.7 A   
+PKBI . . . . . . .  B ADDR   00F8H.1 A   
+PLLEN. . . . . . .  B ADDR   00C8H.7 A   
+PS . . . . . . . .  B ADDR   00B8H.4 A   
+PSPI . . . . . . .  B ADDR   00F8H.3 A   
+PSR. . . . . . . .  B ADDR   00B8H.4 A   
+PST. . . . . . . .  B ADDR   00F8H.6 A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+PT0. . . . . . . .  B ADDR   00B8H.1 A   
+PT0AD. . . . . . .  D ADDR   00F6H   A   
+PT1. . . . . . . .  B ADDR   00B8H.3 A   
+PWDRT. . . . . . .  B ADDR   00B8H.6 A   
+PX0. . . . . . . .  B ADDR   00B8H.0 A   
+PX1. . . . . . . .  B ADDR   00B8H.2 A   
+RB8. . . . . . . .  B ADDR   0098H.2 A   
+RBSP . . . . . . .  C ADDR   0139H   A   
+REN. . . . . . . .  B ADDR   0098H.4 A   
+RES_B. . . . . . .  C ADDR   0136H   A   
+RI . . . . . . . .  B ADDR   0098H.0 A   
+RS0. . . . . . . .  B ADDR   00D0H.3 A   
+RS1. . . . . . . .  B ADDR   00D0H.4 A   
+RST. . . . . . . .  B ADDR   0090H.5 A   
+RSTSRC . . . . . .  D ADDR   00DFH   A   
+RTCCON . . . . . .  D ADDR   00D1H   A   
+RTCH . . . . . . .  D ADDR   00D2H   A   
+RTCL . . . . . . .  D ADDR   00D3H   A   
+RXD. . . . . . . .  B ADDR   0090H.1 A   
+SADDR. . . . . . .  D ADDR   00A9H   A   
+SADEN. . . . . . .  D ADDR   00B9H   A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCL. . . . . . . .  B ADDR   0090H.2 A   
+SCON . . . . . . .  D ADDR   0098H   A   
+SDA. . . . . . . .  B ADDR   0090H.3 A   
+SI . . . . . . . .  B ADDR   00D8H.3 A   
+SKIP_BP. . . . . .  C ADDR   016EH   A   
+SM0. . . . . . . .  B ADDR   0098H.7 A   
+SM1. . . . . . . .  B ADDR   0098H.6 A   
+SM2. . . . . . . .  B ADDR   0098H.5 A   
+SP . . . . . . . .  D ADDR   0081H   A   
+SPCTL. . . . . . .  D ADDR   00E2H   A   
+SPDAT. . . . . . .  D ADDR   00E3H   A   
+SPICLK . . . . . .  B ADDR   00A0H.5 A   
+SPSTAT . . . . . .  D ADDR   00E1H   A   
+A51 MACRO ASSEMBLER  PRO1                                                                 10/16/2017 12:49:44 PAGE    12
+
+SS . . . . . . . .  B ADDR   00A0H.4 A   
+SSTAT. . . . . . .  D ADDR   00BAH   A   
+STA. . . . . . . .  B ADDR   00D8H.5 A   
+STO. . . . . . . .  B ADDR   00D8H.4 A   
+T0 . . . . . . . .  B ADDR   0090H.2 A   
+T1 . . . . . . . .  B ADDR   0080H.7 A   
+TAMOD. . . . . . .  D ADDR   008FH   A   
+TB8. . . . . . . .  B ADDR   0098H.3 A   
+TCON . . . . . . .  D ADDR   0088H   A   
+TCR20. . . . . . .  D ADDR   00C8H   A   
+TCR21. . . . . . .  D ADDR   00F9H   A   
+TDIR2. . . . . . .  B ADDR   00C8H.2 A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TF1. . . . . . . .  B ADDR   0088H.7 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TH2. . . . . . . .  D ADDR   00CDH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TICR2. . . . . . .  D ADDR   00C9H   A   
+TIFR2. . . . . . .  D ADDR   00E9H   A   
+TISE2. . . . . . .  D ADDR   00DEH   A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TL1. . . . . . . .  D ADDR   008BH   A   
+TL2. . . . . . . .  D ADDR   00CCH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TMOD20 . . . . . .  B ADDR   00C8H.0 A   
+TMOD21 . . . . . .  B ADDR   00C8H.1 A   
+TOR2H. . . . . . .  D ADDR   00CFH   A   
+TOR2L. . . . . . .  D ADDR   00CEH   A   
+TPCR2H . . . . . .  D ADDR   00CBH   A   
+TPCR2L . . . . . .  D ADDR   00CAH   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+TRIM . . . . . . .  D ADDR   0096H   A   
+TXD. . . . . . . .  B ADDR   0090H.0 A   
+WDCON. . . . . . .  D ADDR   00A7H   A   
+WDL. . . . . . . .  D ADDR   00C1H   A   
+WFEED1 . . . . . .  D ADDR   00C2H   A   
+WFEED2 . . . . . .  D ADDR   00C3H   A   
+XTAL1. . . . . . .  B ADDR   00B0H.1 A   
+XTAL2. . . . . . .  B ADDR   00B0H.0 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
